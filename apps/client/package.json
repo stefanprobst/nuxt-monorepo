@@ -1,0 +1,67 @@
+{
+	"name": "@acdh-oeaw/template-app-nuxt-client",
+	"private": true,
+	"license": "MIT",
+	"type": "module",
+	"scripts": {
+		"build": "nuxt build",
+		"dev": "nuxt dev",
+		"format:check": "prettier . --cache --check --ignore-path ../../.gitignore",
+		"format:fix": "pnpm run format:check --write",
+		"lint:check": "eslint . --cache --ignore-path ../../.gitignore",
+		"lint:fix": "pnpm run lint:check --fix",
+		"postinstall": "nuxt prepare",
+		"start": "nuxt preview",
+		"types:check": "tsc --noEmit"
+	},
+	"dependencies": {
+		"nuxt": "^3.12.2",
+		"vue": "^3.4.29",
+		"vue-router": "^4.3.3"
+	},
+	"devDependencies": {
+		"@acdh-oeaw/eslint-config": "^1.0.7",
+		"@acdh-oeaw/eslint-config-nuxt": "^1.0.13",
+		"@acdh-oeaw/eslint-config-playwright": "^1.0.7",
+		"@acdh-oeaw/eslint-config-vue": "^1.0.12",
+		"@acdh-oeaw/tsconfig": "^1.0.2",
+		"eslint": "^8.57.0",
+		"eslint-plugin-import-x": "^0.5.1",
+		"eslint-plugin-tailwindcss": "^3.17.3",
+		"typescript": "^5.4.5"
+	},
+	"eslintConfig": {
+		"extends": [
+			"@acdh-oeaw/eslint-config",
+			"@acdh-oeaw/eslint-config/strict",
+			"@acdh-oeaw/eslint-config-vue",
+			"@acdh-oeaw/eslint-config-nuxt",
+			"@acdh-oeaw/eslint-config-playwright",
+			"plugin:eslint-plugin-tailwindcss/recommended"
+		],
+		"settings": {
+			"tailwindcss": {
+				"callees": [
+					"cn",
+					"variants"
+				]
+			}
+		}
+	},
+	"lint-staged": {
+		"*.vue": [
+			"eslint --cache --fix",
+			"prettier --cache --write"
+		],
+		"*.@(ts|tsx)": [
+			"eslint --cache --fix",
+			"prettier --cache --write"
+		],
+		".!(ts|tsx|vue)*": "prettier --cache --ignore-unknown --write"
+	},
+	"postcss": {
+		"plugins": {
+			"tailwindcss": {}
+		}
+	}
+}
