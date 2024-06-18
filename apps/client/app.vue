@@ -1,10 +1,7 @@
-<script lang="ts" setup>
-import TestComponent from "@/components/test-component.vue";
-</script>
-
 <template>
-	<div>
-		<TestComponent />
+	<NuxtLayout>
+		<NuxtPage />
+		<NuxtLoadingIndicator />
 		<NuxtRouteAnnouncer />
-	</div>
+	</NuxtLayout>
 </template>

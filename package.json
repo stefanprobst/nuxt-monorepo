@@ -2,7 +2,11 @@
 	"private": true,
 	"license": "MIT",
 	"type": "module",
-	"packageManager": "pnpm@9.3.0",
+	"engines": {
+		"node": "20.x",
+		"pnpm": "9.x"
+	},
+	"packageManager": "pnpm@9.4.0",
 	"scripts": {
 		"format:check": "prettier . --cache --check --ignore-path ./.gitignore",
 		"format:fix": "pnpm run format:check --write",
@@ -11,9 +15,11 @@
 		"preinstall": "npx only-allow pnpm",
 		"prepare": "run-s setup",
 		"setup": "is-ci || simple-git-hooks",
-		"test": "exit 0",
+		"test": "pnpm --recursive test",
+		"test:e2e": "pnpm --recursive test:e2e",
+		"test:e2e:update-snapshots": "pnpm --recursive test:e2e --update-snapshots",
 		"types:check": "pnpm --recursive types:check",
-		"validate": "run-s format:check lint:check types:check test"
+		"validate": "run-s format:check lint:check types:check test test:e2e"
 	},
 	"devDependencies": {
 		"@acdh-oeaw/prettier-config": "^2.0.0",
